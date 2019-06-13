@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  *@class_name：UserFunction  
  *@param: 5.用户controller层--传入账户
- *@return: 实体对象
+ *@return: 实体对象4
  *@author:Zoutao
  *@createtime:2018年3月14日
  */
@@ -24,6 +24,10 @@ public class LoginHandler {
     @Autowired
     UserFunction fun;
 
+    @RequestMapping("/vip")
+    public String loginIndex(){
+        return "login";
+    }
     @RequestMapping("/login.do")
     public String login(String account, String password, HttpServletRequest request){
         try{
