@@ -39,10 +39,12 @@ public class UserFunctioImpl implements UserFunction {
 		if (u == null) {
 			throw new ThisSystemException("账号不存在");
 		}
-		password = ThisSystemUtil.md5(password);
-		if (u.getPassword().equals(password)) {
+//		password = ThisSystemUtil.md5(password);
+		if (!u.getPassword().equals(password)) {
 			throw new ThisSystemException("密码错误");
 		}
+
+
 		// 账户正确
 		return u;
 	}
