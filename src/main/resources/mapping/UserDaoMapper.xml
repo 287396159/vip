@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 记得加上命名空间 -->
-<mapper namespace="com.zout.vip.dao.UserDao">
+<mapper namespace="com.example.zout.vip.dao.UserDao">
 	<!--查询操作名字对应dao方法，设置返回类型 -->
-	<select id="select" resultType="com.zout.vip.entity.UserEntity">
+	<select id="select" resultType="com.example.zout.vip.entity.UserEntity">
 		select * from sys_user
 		where
 		${key} = #{value}
