@@ -68,6 +68,13 @@ public class LoginHandler {
         System.out.println("登录成功");
         return "redirect:/index.do";
     }
+@RequestMapping("/repassword")
+public String repassword(){
+
+    return "login";
+}
+
+
 
     @RequestMapping("/index.do")
     public String index() {

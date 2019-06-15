@@ -50,7 +50,7 @@
                             <input type="checkbox"  name="status" value="0" id="dis">
                         </label>
                     </div>
-                    <p class="semibold-text mb-2"><a href="#" data-toggle="flip">忘记密码 ?</a></p>
+                    <p class="semibold-text mb-2"><a href="#" data-toggle="flip" id="rp">忘记密码 ?</a></p>
                 </div>
             </div>
             <div class="form-group btn-container">
@@ -59,12 +59,13 @@
                 </button>
             </div>
         </form>
-        <form class="forget-form" action="index.html">
+        <form class="forget-form" action="repassword">
+            <input class="form-control" type="text" name="account" hidden="true" id="acc">
             <h3 class="login-head">
                 <i class="fa fa-lg fa-fw fa-lock"></i>忘记密码 ?</h3>
             <div class="form-group">
                 <label class="control-label">电子邮箱</label>
-                <input class="form-control" type="text" placeholder="Email">
+                <input class="form-control" type="text" placeholder="Email" name="email">
             </div>
             <div class="form-group btn-container">
                 <button class="btn btn-primary btn-block">
@@ -95,6 +96,7 @@
         return false;
     });
 </script>
+<!--记住密码功能 -->
 <script type="text/javascript">
     $(function () {
 // 	编写函数,在按键升起时触发,监测cookie中是否存在该用户名的key,如果有,则把value赋值给密码框
@@ -112,7 +114,9 @@
                     $("#dis").attr("checked", true);
 
                 }
-            }
+
+
+            ``}
     )
 </script>
 <!-- 提示过了以后删除提示语句 -->
