@@ -85,7 +85,7 @@
     		</li>	
     		<li>
     		<!-- targer表示在当前窗口中打开页面 -->
-    			<a href="updatepassword.do" target="mainFrame">修改密码</a>
+    			<a href="updatepassword.do" target="mainFrame">修改密码11111111111111</a>
     		</li>	
     		<li>
     		<!-- 个人完成--个人资料修改 -->

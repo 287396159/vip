@@ -1,6 +1,5 @@
 server:
   port: 8080
-
 spring:
   datasource:
     username: root
@@ -9,11 +8,11 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   mvc:
    view:
-     prefix: /
+     prefix: /templates/
      suffix: .jsp
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
-  type-aliases-package: com.example.entity
+  type-aliases-package: com.example.zout.vip.entity
 
 #showSql
 logging:

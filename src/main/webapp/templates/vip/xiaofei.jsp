@@ -12,7 +12,7 @@
 	
 	<header>
 		<strong>${message}</strong>
-		<form action="vip/qry.do" method="post">
+		<form action="/vip/xiaofei.do" method="post">
 			<p>
 				<label>
 					VIP:
@@ -45,10 +45,6 @@
 				<span>
 					姓名:
 					<b>${v.name}</b>
-				</span>
-				<span>
-					性别:
-					<b>${v.sex}</b>
 				</span>
 				<span>
 					年龄:

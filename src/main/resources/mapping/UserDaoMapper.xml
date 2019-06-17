@@ -4,19 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 记得加上命名空间 -->
-<mapper namespace="com.zout.vip.dao.UserDao">
-	<!--查询操作名字对应dao方法，设置返回类型 -->
-	<select id="select" resultType="com.zout.vip.entity.UserEntity">
-		select * from sys_user
-		where
-		${key} = #{value}
-	</select>
-	<!-- 更新>>set>>可以修改的项 -->
-	<update id="update">
-		update sys_user set
-		account=#{account},
-		name=#{name},
-		password=#{password}
-		where id=#{id}
-	</update>
+<mapper namespace="com.example.zout.vip.dao.UserDao">
+    <!--查询操作名字对应dao方法，设置返回类型-->
+    <select id="select" resultType="com.example.zout.vip.entity.UserEntity">
+    select * from sys_user
+    where
+    ${key} = #{value}
+    </select>
+    <!-- 更新>>set>>可以修改的项 -->
+    <update id="update">
+    update sys_user set
+    account=#{account},
+    name=#{name},
+    password=#{password}
+    where id=#{id}
+    </update>
+    <insert id="regin">
+        insert into sys_user(account,password,email)values(#{account},#{password},#{email})
+	</insert>
 </mapper>

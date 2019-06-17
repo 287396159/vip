@@ -21,9 +21,8 @@
 <body>
 <!-- 用于显示异常信息 -->
 <strong>${message}</strong>
-	 <form action="updatepassword.do" method="post">
-        <p>
-            <label class="col-md-6">旧密码:<input name="oldPassword"></label>
+	 <form action="/updatepassword.do" method="post">
+        <p><label class="col-md-6">旧密码:<input name="oldPassword"></label>
         </p>
         <p>
             <label>新密码:<input name="newPassword"></label>

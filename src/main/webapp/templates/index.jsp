@@ -43,7 +43,7 @@
 			<button class="app-search__button">
 				<i class="fa fa-search"></i>
 			</button></li> -->
-		<li class="app-search"><b>欢迎您:${sessionScope.currentUser.name}</b></li>
+		<li class="app-search"><b>欢迎您:${sessionScope.currentUser.account}</b></li>
 
 		<!-- 用户菜单-->
         <li class="dropdown">
@@ -83,7 +83,7 @@
 			<!-- target=使得页面在主区显示，而不是打开新窗口 -->
 				<li><a class="treeview-item" href="<%=path%>/vip/qry.do" target="mainFrame"><i
 						class="icon fa fa-circle-o"></i>客户查询</a></li>
-				<li><a class="treeview-item" href="widgets.html"><i
+				<li><a class="treeview-item" href="#"><i
 						class="icon fa fa-circle-o"></i> 测试页面</a></li>
 			</ul></li>
 
@@ -94,7 +94,7 @@
 			<ul class="treeview-menu">
 				<li><a class="treeview-item" href="<%=path%>/vip/add.do" target="mainFrame"><i
 						class="icon fa fa-circle-o"></i> 客户录入</a></li>
-				<li><a class="treeview-item" href="form-notifications.html"><i
+				<li><a class="treeview-item" href="#"><i
 						class="icon fa fa-circle-o"></i> 二级菜单</a></li>
 			</ul></li>
 		<li class="treeview"><a class="app-menu__item" href="#"
@@ -102,8 +102,8 @@
 				class="app-menu__label">VIP消费记录</span><i
 				class="treeview-indicator fa fa-angle-right"></i></a>
 			<ul class="treeview-menu">
-				<li><a class="treeview-item" href="table-basic.html" target="mainFrame"><i
-						class="icon fa fa-circle-o"></i>基本表 </a></li>
+				<li><a class="treeview-item" href="<%=path%>/vip/xiaofei.do" target="mainFrame"><i
+						class="icon fa fa-circle-o"></i>基本消费 </a></li>
 				<li><a class="treeview-item" href="table-data-table.html" target="mainFrame"><i
 						class="icon fa fa-circle-o"></i> 数据表</a></li>
 			</ul></li>

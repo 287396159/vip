@@ -2,9 +2,9 @@ package com.example.zout.vip.web.handler.vo;
 
 
 /**
- *@class_name：VIPVo  
+ *@class_name：VIPVo
  *@param: 用于查询以后展示数据
- *@return: 
+ *@return:
  *@author:Zoutao
  *@createtime:2018年3月17日
  */
