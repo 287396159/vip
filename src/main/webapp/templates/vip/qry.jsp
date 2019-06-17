@@ -12,11 +12,11 @@
 	
 	<header>
 		<strong>${message}</strong>
-		<form action="vip/qry.do" method="post">
+		<form action="/vip/qry.do" method="post">
 			<p>
 				<label>
 					VIP:
-					<input name="code"  autofocus>
+					<input name="code" placeholder="请输入手机号" autofocus>
 				</label>
 				<button type="submit">查询</button>
 			</p>

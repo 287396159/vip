@@ -22,7 +22,7 @@
 	<p>
 		<strong>${message}</strong>
 	<p>
-	<form action="vip/add.do" method="post">
+	<form action="/vip/add.do" method="post">
 		<p>
 			<label>*手机号:<input name="phone" value="${param.phone}"
 				placeholder="将作为VIP编号"></label>

@@ -30,7 +30,7 @@ public class LoginHandler {
 
     @RequestMapping(method = RequestMethod.GET, path = "/login.do")
     public String login1() {
-        return null;
+        return "login";
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/login.do")
