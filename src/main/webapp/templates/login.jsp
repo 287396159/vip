@@ -36,18 +36,18 @@
                 <i class="fa fa-lg fa-fw fa-user"></i>登录</h3>
             <div class="form-group">
                 <label class="control-label">用户名</label>
-                <input class="form-control" name="account" type="text" id="yhm" placeholder="yan" autofocus>
+                <input class="form-control" name="account" type="text" id="yhm" placeholder="yan" value="${account}" autofocus>
             </div>
             <div class="form-group">
                 <label class="control-label">密 码</label>
-                <input class="form-control" name="password" type="password" id="mima" placeholder="(* _ *)">
+                <input class="form-control" name="password" type="password" id="mima" placeholder="(* _ *)" value="${password}">
             </div>
             <div class="form-group">
                 <div class="utility">
                     <div class="animated-checkbox">
                         <label>
                             <input type="checkbox" name="status" value="1" id="jizhumima"><span class="label-text">记住登陆名和密码</span>
-                            <input type="checkbox"  name="status" value="0" id="dis">
+                            <input type="checkbox" name="status" value="0" id="dis">
                         </label>
                     </div>
                     <p class="semibold-text mb-2"><a href="#" data-toggle="flip" id="rp">忘记密码 ?</a></p>
@@ -56,6 +56,9 @@
             <div class="form-group btn-container">
                 <button class="btn btn-primary btn-block" type="submit">
                     <i class="fa fa-sign-in fa-lg fa-fw"></i>登录
+                </button>
+                <button class="btn btn-primary btn-block" id="rg" type="button">
+                    <i class="fa fa-sign-in fa-lg fa-fw"></i>注册
                 </button>
             </div>
         </form>
@@ -110,13 +113,16 @@
                         }
                     }
                 })
-                if($("#jizhumima").attr("checked")!==true){
+                if ($("#jizhumima").attr("checked") !== true) {
                     $("#dis").attr("checked", true);
 
                 }
+                $("#rg").click(function () {
+                            window.location.href = "<%=path%>/regin.do"
+                        }
+                )
 
-
-            ``}
+            }
     )
 </script>
 <!-- 提示过了以后删除提示语句 -->

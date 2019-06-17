@@ -27,6 +27,8 @@ public interface UserFunction {
 	@Transactional
     UserEntity updatePassword(String id, String oldPassword, String newPasswrod, String newPasswordConfirm)throws Exception;
 
+	void regin(String password, String cpassword, String account, String email)throws Exception;
+
 	/*查看个人信息功能--注解》表示需要通过事务管理,这数据库才会更新*/
 	/*@Transactional--直接使用session
     UserEntity selectMyinf(String account)throws Exception;*/

@@ -43,7 +43,7 @@
 			<button class="app-search__button">
 				<i class="fa fa-search"></i>
 			</button></li> -->
-		<li class="app-search"><b>欢迎您:${sessionScope.currentUser.name}</b></li>
+		<li class="app-search"><b>欢迎您:${sessionScope.currentUser.account}</b></li>
 
 		<!-- 用户菜单-->
         <li class="dropdown">
@@ -122,7 +122,7 @@
 		</li>
 		<li><a class="app-menu__item" href="<%=path%>/updatepassword.do" target="mainFrame"><i
 				class="app-menu__icon fa fa-pie-chart"></i><span
-				class="app-menu__label">修改密码</span></a>
+				class="app-menu__label">修改密码22222222222222</span></a>
 		</li>
 
 		<!-- 预留位置 -->

@@ -14,6 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.tagext.TryCatchFinally;
 
 /**
  * @class_name：UserFunction
@@ -27,12 +28,12 @@ public class LoginHandler {
     @Autowired
     UserFunction fun;
 
-    @RequestMapping("/vip")
-    public String loginIndex() {
-        return "login";
+    @RequestMapping(method = RequestMethod.GET, path = "/login.do")
+    public String login1() {
+        return null;
     }
 
-    @RequestMapping("/login.do")
+    @RequestMapping(method = RequestMethod.POST, path = "/login.do")
     public String login(String account, String password, HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response, int status) {
         try {
             UserEntity u = fun.login(account, password);
@@ -40,10 +41,11 @@ public class LoginHandler {
             session.setMaxInactiveInterval(3600);
             session.setAttribute("currentUser", u);
         } catch (Exception e) {
+            e.printStackTrace();
             //不成功则>内部跳转>登录。
             model.addAttribute("message", e.getMessage());
             System.out.println("登录失败");
-            return "forward:/vip";
+            return "redirect:/login.do";
         }
 
 //利用cookie实现记住密码功能
@@ -66,15 +68,36 @@ public class LoginHandler {
 
         //成功则重定向到首页。
         System.out.println("登录成功");
-        return "redirect:/index.do";
+        return "index";
     }
-@RequestMapping("/repassword")
-public String repassword(){
 
-    return "login";
-}
+    @RequestMapping("/repassword")
+    public String repassword() {
 
+        return "login";
+    }
 
+    @RequestMapping("/regin.do")
+    public String regin() {
+        return null;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/regin.do")
+    public String regin(String password, String cpassword, String account, Model model, String email) {
+        try {
+            fun.regin(password, cpassword, account, email);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("message", e.getMessage());
+            System.out.println("注册失败");
+            return "forward:/regin.do";
+        }
+        model.addAttribute("account", account);
+        model.addAttribute("password", password);
+        System.out.println("注册成功");
+        return "login";
+    }
 
     @RequestMapping("/index.do")
     public String index() {
@@ -93,7 +116,7 @@ public String repassword(){
         //让session失效
         session.invalidate();
         System.out.println("注销成功");
-        return "redirect:/login.jsp";
+        return "redirect:/login.do";
     }
 
     //修改密码>使得能访问>web-inf下修改页
@@ -105,7 +128,7 @@ public String repassword(){
 
     @RequestMapping(method = RequestMethod.POST, path = "/updatepassword.do")
     public String updatepassword(String oldPassword, String newPassword, String newPasswordConfirm,
-                                 HttpServletRequest request) throws Exception {
+                                 HttpServletRequest request,HttpServletResponse response) throws Exception {
         //获得session》知道是谁在修改密码
         HttpSession session = request.getSession();
         UserEntity u = (UserEntity) session.getAttribute("currentUser");
@@ -117,11 +140,20 @@ public String repassword(){
             //把业务异常封装给用户看，系统异常不给
             request.setAttribute("message", e.getMessage());
             System.out.println("密码修改失败");
-            return "updatepassword";
+            return "login";
+        }
+
+        Cookie[] cookies = request.getCookies();
+        for (Cookie c : cookies) {
+            if (c.getName().equals(u.getAccount())) {
+                c.setMaxAge(0);
+                c.setPath("/");
+                response.addCookie(c);
+            }
         }
         session.setAttribute("message", "修改成功，请重新登录");
         System.out.println("密码修改成功");
-        return "redirect:/login.jsp";
+        return "login";
     }
 
     //利用session-查看个人信息,内部跳转>个人信息页
