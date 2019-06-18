@@ -47,10 +47,11 @@ public class VipHandler extends AbstractHandler {
 		vo.setEmail(v.getEmail());
 		vo.setName(v.getName());
 		vo.setQq(v.getQq());
+		initVipRank(req);
 		//需要把等级1》文字表述
-//		VIPRankEntity rank=this.getRank(req,v.getRank());
+		VIPRankEntity rank=this.getRank(req,v.getRank());
 		//TODO:查询vip级别
-//		vo.setRank(rank.getName());
+		vo.setRank(rank.getName());
 		vo.setRemark(v.getRemark());
 		vo.setSex(v.isMale()?"男":"女");
 		vo.setZip(v.getZip());

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
     String path = request.getContextPath();
 %>
@@ -17,10 +18,12 @@
 <!-- 保证当前窗口最前 -->
 <script>
     if (window.top !== window) {
-        window.top.location.href = window.location.href;
+        window.top.location.href = "<%=path%>/login.do";
     }
 </script>
 <body>
+<c:set var="account" value="${sessionScope.currentUser.account}"/>
+<c:set var="a" value="${sessionScope.a}"/>
 <section class="material-half-bg">
     <div class="cover"></div>
 </section>
@@ -29,18 +32,21 @@
         <h1>vipCMS</h1>
     </div>
     <!-- 返回出信息 -->
-    <strong>${message}</strong>
+    <%--<strong>${message}</strong>--%>
+    <strong>${a}${message}</strong>
     <div class="login-box">
-        <form class="login-form" action="login.do" method="post">
+        <form class="login-form" action="index.do" method="post">
             <h3 class="login-head">
                 <i class="fa fa-lg fa-fw fa-user"></i>登录</h3>
             <div class="form-group">
                 <label class="control-label">用户名</label>
-                <input class="form-control" name="account" type="text" id="yhm" placeholder="yan" value="${account}" autofocus>
+                <input class="form-control" name="account" type="text" id="yhm" placeholder="yan" value="${account}"
+                       autofocus>
             </div>
             <div class="form-group">
                 <label class="control-label">密 码</label>
-                <input class="form-control" name="password" type="password" id="mima" placeholder="(* _ *)" value="${password}">
+                <input class="form-control" name="password" type="password" id="mima" placeholder="(* _ *)"
+                       value="${password}">
             </div>
             <div class="form-group">
                 <div class="utility">

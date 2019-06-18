@@ -4,17 +4,18 @@ package com.example.zout.vip.web.handler;
 import com.example.zout.common.ThisSystemException;
 import com.example.zout.vip.entity.UserEntity;
 import com.example.zout.vip.function.UserFunction;
+import org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.tagext.TryCatchFinally;
 
 /**
  * @class_name：UserFunction
@@ -33,7 +34,7 @@ public class LoginHandler {
         return "login";
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/login.do")
+    @RequestMapping(method = RequestMethod.POST, path = "/index.do")
     public String login(String account, String password, HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response, int status) {
         try {
             UserEntity u = fun.login(account, password);
@@ -45,7 +46,7 @@ public class LoginHandler {
             //不成功则>内部跳转>登录。
             model.addAttribute("message", e.getMessage());
             System.out.println("登录失败");
-            return "redirect:/login.do";
+            return "login";
         }
 
 //利用cookie实现记住密码功能
@@ -99,10 +100,21 @@ public class LoginHandler {
         return "login";
     }
 
-    @RequestMapping("/index.do")
-    public String index() {
-        return "index";
-    }
+//    @RequestMapping("/index.do")
+//    public String index() {
+//        return "index";
+//    }
+
+//    @RequestMapping("/abc")
+//    public String a(){
+//        return "login";
+//    }
+//
+//
+//    @RequestMapping(path = "/efg",method = RequestMethod.POST)
+//    public String b(){
+//        return "updatepassword";
+//    }
 
     //转接到web-inf的welcome页面，使得能访问
     @RequestMapping("/welcome.do")
@@ -116,19 +128,21 @@ public class LoginHandler {
         //让session失效
         session.invalidate();
         System.out.println("注销成功");
-        return "redirect:/login.do";
+        return "redirect:/login";
     }
 
     //修改密码>使得能访问>web-inf下修改页
     //get方式》获得视图，post方式》执行请求。
     @RequestMapping(method = RequestMethod.GET, path = "/updatepassword.do")
     public String updatepasswordView() {
+        System.out.println("AAAAAAAAAAAAAAAAAAAA");
         return null;
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/updatepassword.do")
+    @RequestMapping(value = "/updatepassworda.do",method = RequestMethod.POST)
     public String updatepassword(String oldPassword, String newPassword, String newPasswordConfirm,
-                                 HttpServletRequest request,HttpServletResponse response) throws Exception {
+                                 HttpServletRequest request,HttpServletResponse response)  {
+        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBB");
         //获得session》知道是谁在修改密码
         HttpSession session = request.getSession();
         UserEntity u = (UserEntity) session.getAttribute("currentUser");
@@ -140,7 +154,10 @@ public class LoginHandler {
             //把业务异常封装给用户看，系统异常不给
             request.setAttribute("message", e.getMessage());
             System.out.println("密码修改失败");
-            return "login";
+
+        }catch (Exception e){
+
+            e.printStackTrace();
         }
 
         Cookie[] cookies = request.getCookies();
@@ -151,7 +168,10 @@ public class LoginHandler {
                 response.addCookie(c);
             }
         }
-        session.setAttribute("message", "修改成功，请重新登录");
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("account",((UserEntity) session.getAttribute("currentUser")).getAccount());
+//        modelAndView.setViewName("login");
+        session.setAttribute("a", "修改成功，请重新登录");
         System.out.println("密码修改成功");
         return "login";
     }
