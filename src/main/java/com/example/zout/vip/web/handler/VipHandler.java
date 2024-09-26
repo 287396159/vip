@@ -9,6 +9,7 @@ import com.example.zout.vip.web.handler.ao.VIPAo;
 import com.example.zout.vip.web.handler.vo.VIPVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,7 +33,7 @@ public class VipHandler extends AbstractHandler {
 	}
     //post执行请求--相关的处理操作
     @RequestMapping(path="/vip/qry.do",method=RequestMethod.POST)
-	public String qry(String code,HttpServletRequest  req)throws Exception{
+	public String qry(String code,HttpServletRequest  req )throws Exception{
 	try{
 		VIPEntity v = fun.queryVip(code);
 		
@@ -46,6 +47,7 @@ public class VipHandler extends AbstractHandler {
 		vo.setEmail(v.getEmail());
 		vo.setName(v.getName());
 		vo.setQq(v.getQq());
+		initVipRank(req);
 		//需要把等级1》文字表述
 		VIPRankEntity rank=this.getRank(req,v.getRank());
 		//TODO:查询vip级别
@@ -86,15 +88,12 @@ public class VipHandler extends AbstractHandler {
 		return "vip/xiaofei";
 	}
 	@RequestMapping(path="/vip/xiaofei.do",method=RequestMethod.POST)
-	public String xiaofei(VIPAo ao,HttpServletRequest req)throws Exception{
+	public String xiaofei(String code, HttpServletRequest req,Model model)throws Exception{
+
 		try{
-			//1 业务方法执行
-			@SuppressWarnings("unused")
-			VIPEntity v=fun.addVip(ao);
-			//2业务跳转
-			//TODO:后期跳转到消费录入界面
-			req.setAttribute("message", "录入成功!");
-			return "vip/add";
+			VIPEntity v = fun.queryVip(code);
+
+			model.addAttribute("v", v);
 		}catch(ThisSystemException e){
 			req.setAttribute("message", e.getMessage());
 		}

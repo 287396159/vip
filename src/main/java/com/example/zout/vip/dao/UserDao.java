@@ -3,6 +3,7 @@ package com.example.zout.vip.dao;
 
 import com.example.zout.common.AbstractDao;
 import com.example.zout.vip.entity.UserEntity;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +15,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserDao extends AbstractDao<UserEntity> {
-	/*传入一个账号，返回一个实体*/
-	
+    void regin(@Param("account")String account, @Param("password")String password,  @Param("email")String email) throws Exception;
 }

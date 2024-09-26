@@ -40,9 +40,11 @@ public class UserFunctioImpl implements UserFunction {
 			throw new ThisSystemException("账号不存在");
 		}
 		password = ThisSystemUtil.md5(password);
-		if (u.getPassword().equals(password)) {
+		if (!u.getPassword().equals(password)) {
 			throw new ThisSystemException("密码错误");
 		}
+
+
 		// 账户正确
 		return u;
 	}
@@ -78,6 +80,14 @@ public class UserFunctioImpl implements UserFunction {
 		//更新修改后的密码
 		udao.update(u);
 		return u;
+	}
+
+	@Override
+	public void regin(String password, String cpassword, String account, String email) throws Exception {
+		assertEquals("两次密码不一致", password, cpassword);
+		password = ThisSystemUtil.md5(password);
+		udao.regin(account,password,email);
+
 	}
 
 	/* 实现查询个人信息模块 --直接使用session*/

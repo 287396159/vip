@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 记得加上命名空间 -->
-<mapper namespace="com.zout.vip.dao.VIPDao">
+<mapper namespace="com.example.zout.vip.dao.VIPDao">
 <!-- 插入操作 -->
 <insert id="insert">
 	insert into vip_detail(id,code,name,age,sex,qq,
@@ -51,7 +51,7 @@
     	order by code
     </select>
     
-    <resultMap type="com.zout.vip.entity.VIPEntity" id="VIPMap" >
+    <resultMap type="com.example.zout.vip.entity.VIPEntity" id="VIPMap" >
     	<result column="sex" property="male"/>
     </resultMap>	
 </mapper>
